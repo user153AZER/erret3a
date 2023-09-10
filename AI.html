@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AI Chatbot</title>
+  <style>
+    /* CSS styles for the chat container */
+    #chat-container {
+      width: 400px;
+      height: 400px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>AI Chatbot</h1>
+
+  <div id="chat-container"></div>
+
+  <input type="text" id="user-input" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    // Define an array of possible user inputs
+    const userInputs = [
+      'Hello',
+      'How are you?',
+      'Tell me a joke',
+      'Exit'
+    ];
+
+    // Define an array of possible AI responses
+    const aiResponses = [
+      'Hello!',
+      'I am doing well, thank you!',
+      'dam3et ommi mchet 5sara 7sibou rabby eka dhalem',
+      'Goodbye!'
+    ];
+
+    // Function to generate a random index
+    function getRandomIndex(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    // Function to display messages in the chat container
+    function displayMessage(sender, message) {
+      const chatContainer = document.getElementById('chat-container');
+      const messageElement = document.createElement('div');
+      messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatContainer.appendChild(messageElement);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // AI chat function
+    function aiChat() {
+      // Generate a random index for the AI response
+      const aiIndex = getRandomIndex(aiResponses.length);
+
+      // Get a random AI response
+      const aiResponse = aiResponses[aiIndex];
+
+      // Output the AI response
+      displayMessage('AI', aiResponse);
+    }
+
+    // User chat function
+    function userChat() {
+      // Get the user input
+      const userInput = document.getElementById('user-input').value;
+
+      // Output the user input
+      displayMessage('User', userInput);
+
+      // Check if user wants to exit
+      if (userInput === 'Exit') {
+        displayMessage('AI', 'Goodbye!');
+        return;
+      }
+
+      // Call the AI chat function
+      aiChat();
+
+      // Clear the user input field
+      document.getElementById('user-input').value = '';
+    }
+
+    // Function to send user message on button click
+    function sendMessage() {
+      userChat();
+    }
+
+    // Function to send user message on pressing Enter key
+    document.getElementById('user-input').addEventListener('keyup', function (event) {
+      if (event.key === 'Enter') {
+        userChat();
+      }
+    });
+  </script>
+</body>
+
+</html>
