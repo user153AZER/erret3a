@@ -10,7 +10,7 @@ z = np.random.randn(num_stars)
 # Plot the stars
 fig = plt.figure(figsize=(8, 8))
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(x, y, z, c='white', marker='.', s=1)
+ax.scatter(x, y, z, c='black', marker='.', s=1)
 
 # Set plot limits and labels
 ax.set_xlim(-10, 10)
